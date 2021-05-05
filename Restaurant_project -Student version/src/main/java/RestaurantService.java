@@ -6,8 +6,14 @@ public class RestaurantService {
     private static List<Restaurant> restaurants = new ArrayList<>();
 
     public Restaurant findRestaurantByName(String restaurantName){
+        for(Restaurant restName: restaurants) {
+            if(restName.getName().equals(restaurantName)){
+                return restName;
+            }
+
+        }
         return null;
-        //DELETE ABOVE STATEMENT AND WRITE CODE HERE
+
     }
 
 
@@ -19,8 +25,12 @@ public class RestaurantService {
 
     public Restaurant removeRestaurant(String restaurantName) throws restaurantNotFoundException {
         Restaurant restaurantToBeRemoved = findRestaurantByName(restaurantName);
+        if (restaurantToBeRemoved == null)
+            throw new restaurantNotFoundException(restaurantName);
+
         restaurants.remove(restaurantToBeRemoved);
         return restaurantToBeRemoved;
+
     }
 
     public List<Restaurant> getRestaurants() {

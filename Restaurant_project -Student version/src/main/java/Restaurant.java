@@ -1,6 +1,7 @@
-import java.time.LocalDateTime;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class Restaurant {
@@ -17,16 +18,23 @@ public class Restaurant {
         this.closingTime = closingTime;
     }
 
-    public boolean isRestaurantOpen() {
-        return true;
-        //DELETE ABOVE STATEMENT AND WRITE CODE HERE
+    public boolean isRestaurantOpen(LocalTime currentTime) {
+        //LocalTime currentTime = this.getCurrentTime();
+        long startTimeDiff = ChronoUnit.MINUTES.between(openingTime,currentTime);
+        long EndTimeDiff = ChronoUnit.MINUTES.between(currentTime,closingTime);
+        if(startTimeDiff >0 && EndTimeDiff > 0){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
-        return null;
+        //return null;
         //DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
+        return menu;
     }
 
     private Item findItemByName(String itemName){
