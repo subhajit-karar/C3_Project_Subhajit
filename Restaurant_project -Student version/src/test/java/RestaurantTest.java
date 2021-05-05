@@ -71,10 +71,11 @@ class RestaurantTest {
         refactorCommon();
         restaurant.addToMenu("Sweet corn soup",119);
         restaurant.addToMenu("Vegetable lasagne", 269);
-
-        restaurant.getTotalPrice();
-
+        restaurant.addToMenu("Vegetable Rice", 100);
+        assertEquals((119+100),restaurant.getTotalPrice("Sweet corn soup","Vegetable Rice"));
     }
+
+
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
